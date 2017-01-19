@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PTAH=`pwd`
+SSH_PATH=`pwd`
 
 read -p "Configure openssh-server, y or n ?" status
 case $status in
@@ -23,7 +23,7 @@ case $status in
 					sed -i '/Protocol/c Protocol 2' sshd_config
 					echo "Protocol 2 !"
 					sed -i '/^PermitRootLogin/c PermitRootLogin yes' sshd_config
-					cat $PATH/.algorithm >> sshd_config
+					cat $SSH_PATH/.algorithm >> sshd_config
                     echo "***Allow to login remotely***"
 				else
 					echo "***/etc/ssh/sshd_config  doesn't exist !***"
