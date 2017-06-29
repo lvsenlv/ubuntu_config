@@ -13,8 +13,8 @@ case $status in
                 ;;
         esac
 
-		apt-get install vim
-        apt-get install git
+		apt-get install -y vim
+        apt-get install -y git
 		
         echo "***Finish installing***"
 		

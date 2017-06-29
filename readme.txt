@@ -10,15 +10,15 @@ https://github.com/amix/vimrc
 
 
 *****************************************************************************
-***Struction***
+***Instruction***
 
-all_config.sh is used to configure the linux environment.
+all_config.sh : is used to configure the ubuntu environment.
 
-config is a directoy which contains all necessary scripts and packages.
+config : is a directoy which contains all necessary scripts and packages.
 
-config_checksum is used to check the md5 value.
+config_checksum : is used to check the md5 value.
 
-connection.md expounds the trouble of connection when using ssh to connect the ubuntu which installed in the virtual machine, such as VMware and Virtual box. 
+connection.md : expounds the trouble of connection when using ssh to connect the ubuntu which installed in the virtual machine, such as VMware and Virtual box. 
 
 *****************************************************************************
 ***How to use***

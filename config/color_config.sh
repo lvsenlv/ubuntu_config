@@ -36,7 +36,7 @@ case $status in
         echo "2. light"
         echo "3. dark"
         echo "4. universal"
-        read -p "Witch one do you want to install ?" choice2
+        read -p "Which one do you want to install ?" choice2
         case $choice2 in
             1 )
                 cat $COLOR_CONFIG_FILE_PATH/dircolors/dircolors.256dark > .dircolors
