@@ -2,44 +2,63 @@
 
 SSH_PATH=`pwd`
 
-read -p "Configure openssh-server, y or n ?" status
+read -p "configure ssh server, y or n ?" status
 case $status in
-	y | Y | yes | Yes | YES )
-		apt-get update		
-		apt-get install openssh-server
-		service sshd start
-		ufw disable
-		apt-get remove iptables
-		echo "***Finish installing openssh-server***"
-        echo "***Finish remove iptables***"
+    y | Y | yes | Yes | YES )
+        apt-get update		
+        apt-get install -y openssh-server
+        service sshd start
+        ufw disable
+        apt-get remove -y iptables
 
-		read -p "Login remotely, y or n ?" status2
-		case $status2 in
-			y | Y | yes | Yes | YES )
-				if [ -f /etc/ssh/sshd_config ];then
-					cd /etc/ssh/
-					sed -i '/Port/c Port 22' sshd_config
-					echo "Port 22 !"
-					sed -i '/Protocol/c Protocol 2' sshd_config
-					echo "Protocol 2 !"
-					sed -i '/^PermitRootLogin/c PermitRootLogin yes' sshd_config
-					cat $SSH_PATH/.algorithm >> sshd_config
-                    echo "***Allow to login remotely***"
-				else
-					echo "***/etc/ssh/sshd_config  doesn't exist !***"
-				fi
-		
-				echo "***Finish configuring openssh-server***"
-				;;
-			* )
-				echo "***Ban logining remotely***"
-				;;
-		esac
+        echo "****************************************"
+        echo "*** Finish installing openssh-server ***"
+        echo "*** Finish removing iptables         ***"
+        echo "****************************************"
 
-		service sshd restart
-		;;
-	* )
-		echo "***Stop configuring openssh-server***"
-		;;
+        read -p "Enable remote login, y or n ?" status2
+        case $status2 in
+            y | Y | yes | Yes | YES )
+                if [ -f /etc/ssh/sshd_config ];then
+                    cd /etc/ssh/
+                    sed -i '/Port/c Port 22' sshd_config 
+                    echo "*****************"
+                    echo "*** Port 22 ! ***"
+                    echo "*****************"
+
+                    sed -i '/Protocol/c Protocol 2' sshd_config
+                    echo "********************"
+                    echo "*** Protocol 2 ! ***"
+                    echo "********************"
+
+                    sed -i '/^PermitRootLogin/c PermitRootLogin yes' sshd_config
+                    cat $SSH_PATH/.algorithm >> sshd_config
+                    echo "************************************"
+                    echo "*** You can login remotely now ! ***"
+                    echo "************************************"
+                else
+                    echo "*********************************************"
+                    echo "*** /etc/ssh/sshd_config  doesn't exist ! ***"
+                    echo "*********************************************"
+                fi
+
+                echo "*****************************************"
+                echo "*** Finish configuring openssh-server ***"
+                echo "*****************************************"
+                ;;
+            * )
+                echo "****************************"
+                echo "*** Disable remote login ***"
+                echo "****************************"
+                ;;
+        esac
+
+        service sshd restart
+        ;;
+    * )
+        echo "***************************************"
+        echo "*** Stop configuring openssh-server ***"
+        echo "***************************************"
+        ;;
 esac
 

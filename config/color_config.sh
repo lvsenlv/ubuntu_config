@@ -4,7 +4,7 @@ read -p "Configure color, y or n ?" status
 case $status in
     y | Y | yes | Yes | YES )
         COLOR_CONFIG_FILE_PATH=`pwd`
-        read -p "Configure the current user, y or n ?" status2
+        read -p "Configure in current user, y or n ?" status2
         case $status in
             y | Y | yes | Yes | YES )
                 cd ~/ 
@@ -17,8 +17,12 @@ case $status in
                     if [ -d /home/$UserName ];then
                         cd /home/$UserName/
                     else
-                        echo "***$UserName  doesn't exist***"
-                        echo "***Stop configuring color***"
+                        echo "********************************************"
+                        echo "***                                      ***"
+                        echo "*** Fatal error: $UserName doesn't exist ***"
+                        echo "*** Stop configuring color               ***"
+                        echo "***                                      ***"
+                        echo "********************************************"
                         exit 0
                     fi
                 fi
@@ -31,7 +35,7 @@ case $status in
             cat $COLOR_CONFIG_FILE_PATH/.bashrc2 > .bashrc
         fi 
 
-        echo "Configure dircolors......"
+        echo "Being configuring dircolors ......"
         echo "1. 256dark"
         echo "2. light"
         echo "3. dark"
@@ -40,28 +44,42 @@ case $status in
         case $choice2 in
             1 )
                 cat $COLOR_CONFIG_FILE_PATH/dircolors/dircolors.256dark > .dircolors
-                echo "***Success***"
+                echo "***************"
+                echo "*** Success ***"
+                echo "***************"
                 ;;
             2 )
                 cat $COLOR_CONFIG_FILE_PATH/dircolors/dircolors.ansi-light > .dircolors
-                echo "***Success***"
+                echo "***************"
+                echo "*** Success ***"
+                echo "***************"
                 ;;
             3 )
                 cat $COLOR_CONFIG_FILE_PATH/dircolors/dircolors.ansi-dark > .dircolors
-                echo "***Success***"
+                echo "***************"
+                echo "*** Success ***"
+                echo "***************"
                 ;;
             4 )
                 cat $COLOR_CONFIG_FILE_PATH/dircolors/dircolors.ansi-universal > .dircolors
-                echo "***Success***"
+                echo "***************"
+                echo "*** Success ***"
+                echo "***************"
                 ;;
             * )
-                echo "***Stop configuring dircolors***"
+                echo "**********************************"
+                echo "*** Stop configuring dircolors ***"
+                echo "**********************************"
                 ;;
         esac
 
-        echo "***Finish configuring color***"
+        echo "********************************"
+        echo "*** Finish configuring color ***"
+        echo "********************************"
         ;;
     * )
-        echo "***Stop configuring color***"
+        echo "******************************"
+        echo "*** Stop configuring color ***"
+        echo "******************************"
 esac
 
